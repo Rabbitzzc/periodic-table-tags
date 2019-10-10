@@ -2,9 +2,9 @@
   <div id="app">
     <div class="title">
       <h1>HTML 标 签 元 素 周 期 表</h1>
-      <p class="star">Periodic Table of the HTML Tag Elements <small>115 tags</small></p>
+      <p class="star">Periodic Table of the HTML Elements <small>115 tags</small></p>
     </div>
-    <core></core>
+    <core ref="core"></core>
     <div class="intro">
       <p>
         1982年，Tim Berners-Lee 建立 HTML
@@ -40,6 +40,9 @@
       <p>2012年， HTML 5被选为候选标准</p>
       <p>2014年10月28日，HTML 5.0，W3C正式发布HTML 5.0推荐标准</p>
     </div>
+    <footer>
+      <span>Copyright © 2019 - &nbsp; Rabbit🐇</span>
+    </footer>
   </div>
 </template>
 
@@ -49,6 +52,17 @@ export default {
   name: 'app',
   components: {
       Core
+  },
+  mounted() {
+    document.addEventListener('click',  (event) => {
+        let e = event
+        if (window.event) {    
+            e.cancelBubble=true
+        } else if (e && e.stopPropagation) { 
+            e.stopPropagation()
+        }
+        this.$refs.core.activeTag = ''
+    })
   }
 }
 </script>
@@ -61,8 +75,7 @@ export default {
   text-align: center;
   color: #fff;
   width: 74vw;
-  margin: 5vh auto;
-  margin-top: 1vh;
+  margin: 1vh auto;
 }
 
 html,
@@ -76,22 +89,25 @@ body {
   list-style: none;
 }
 
-a {
-  color: #fff;
-}
-
 .title {
   margin-bottom: 5vh;
 }
 
 .intro {
-    margin-top: 20vh;
-    margin-left: 20vw;
-    text-align: left;
-    font-size: 0.6rem;
+  margin-top: 20vh;
+  margin-left: 20vw;
+  text-align: left;
+  font-size: 0.6rem;
 }
 
 .intro p {
-    line-height: 4vh;
+  line-height: 2rem;
+}
+
+footer {
+  height: 30px;
+  font-size: 0.5rem;
+  margin-top: 3vh;
+  color: lightblue;
 }
 </style>

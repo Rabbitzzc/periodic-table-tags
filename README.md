@@ -1,29 +1,12 @@
 # ptabletags
 
-## Project setup
-```
-yarn install
-```
+Periodic Table of the HTML Elements. 
+模仿化学元素周期表，创建的一个关于 HTML 标签元素周期表。
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+## content
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+#### 首页
+![](./src/assets/home.png)
 
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+#### 历史
+![](./src/assets/history.png)

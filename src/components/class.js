@@ -148,5 +148,14 @@ const interactiveVal = [
     'summary'
 ]
 
-//======>
-//115
+export default {
+    rootVal,
+    metaVal,
+    documentVal,
+    blockVal,
+    textVal,
+    embedVal,
+    tableVal,
+    formVal,
+    interactiveVal
+}

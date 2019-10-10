@@ -1,21 +1,14 @@
 <template>
-  <div class="container">
+  <div
+    class="container"
+    @click.stop="activeTag = ''"
+  >
     <table>
-      <!-- <thead>
-        <tr class="first">
-          <th></th>
-          <th
-            v-for="n in 18"
-            :key="n"
-          >{{n}}</th>
-        </tr>
-      </thead> -->
       <tbody>
         <tr
           v-for="(row, index) in tags"
           :key="index"
         >
-          <!-- <th>{{index < 7 ? index + 1 : ''}}</th> -->
           <td
             v-for="(col, nums) in row"
             :key="nums"
@@ -24,14 +17,21 @@
               :class="col.class"
               class="elements"
               v-if="col.name"
+              @click.stop="activeTag = col.name"
             >
               <div
                 class="info"
-                v-if="false"
+                v-if="activeTag === col.name"
               >
-                <h3>{{col.name}}</h3>
-                <p>{{col.desc}}</p>
-                <a :href="col.url">W3C 介绍</a>
+                <h3>
+                  <{{col.name}}>
+                </h3>
+                <p>{{col.cndesc}}</p>
+                <p class="example">
+                  <code>{{col.code}}</code>
+                </p>
+                <a :href="col.mdnurl" target="_blank" v-if="col.mdnurl">MDN</a>
+                <a :href="col.w3curl" target="_blank" v-if="col.w3curl">W3C</a>
               </div>
               <div class="element">
                 {{col.name}}
@@ -41,7 +41,6 @@
         </tr>
       </tbody>
     </table>
-
     <!-- 颜色选择区域 -->
     <div class="color-select">
       <ul>
@@ -84,7 +83,9 @@ export default {
     data() {
         return {
             tags,
-            colorInfo
+            colorInfo,
+            showInfo: false,
+            activeTag: ''
         }
     }
 }
@@ -105,21 +106,17 @@ td {
 }
 
 .elements {
-  /* background: rgb(100, 255, 100); */
-  /* background: lavender; */
   background: #9d9d9d;
   color: #000;
   cursor: pointer;
   display: block;
   font-size: 0.6rem;
-  /* line-height: 4.44rem; */
   width: 3.5rem;
   height: 3.5rem;
   line-height: 3.5rem;
   margin: 0;
-  opacity: 0.8;
   padding: 0;
-  overflow: hidden;
+  /* overflow: hidden; */
   text-align: center;
   position: relative;
   border-radius: 5%;
@@ -132,32 +129,32 @@ td {
   box-shadow: 0px 0px 10px 4px #fff;
 }
 
-.rootval {
-  background: #73f69c;
+.elements .info {
+  opacity: 1;
+  box-sizing: border-box;
+  position: absolute;
+  top: 3.5rem;
+  left: 0;
+  z-index: 100;
+  text-align: left;
+  padding: 0.5rem;
+  width: 20vw;
+  border-radius: 5%;
+  line-height: 1.5rem;
+  background: #fff;
+  cursor: initial;
+  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.25);
 }
-.metaval {
-  background: #3d97f7;
-}
-.documentval {
-  background: #ec5445;
-}
-.blockval {
-  background: #b85f29;
-}
-.embedval {
-  background: #b265ea;
-}
-.textval {
-  background: #f9d448;
-}
-.tableval {
-  background: #64ff64;
-}
-.formval {
-  background: #8a96d1;
-}
-.interactiveval {
-  background: #d4d4d4;
+
+.elements .info a {
+  line-height: 0;
+  margin: 0 0.2rem;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.1rem 0.2rem;
+  text-align: center;
+  border-radius: 5%;
+  background: #74bedb;
 }
 
 .color-select {
@@ -193,5 +190,33 @@ td {
 
 .only-color ul li {
   width: auto;
+}
+
+.rootval {
+  background: #73f69c;
+}
+.metaval {
+  background: #3d97f7;
+}
+.documentval {
+  background: #ec5445;
+}
+.blockval {
+  background: #b85f29;
+}
+.embedval {
+  background: #b265ea;
+}
+.textval {
+  background: #f9d448;
+}
+.tableval {
+  background: #64ff64;
+}
+.formval {
+  background: #8a96d1;
+}
+.interactiveval {
+  background: #d4d4d4;
 }
 </style>

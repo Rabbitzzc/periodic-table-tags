@@ -74,13 +74,15 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #fff;
-  width: 74vw;
-  margin: 1vh auto;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 html,
 body {
   background: #1c1d25;
+  position: relative;
 }
 
 * {
@@ -94,7 +96,7 @@ body {
 }
 
 .intro {
-  margin-top: 20vh;
+  margin-top: 25vh;
   margin-left: 20vw;
   text-align: left;
   font-size: 0.6rem;

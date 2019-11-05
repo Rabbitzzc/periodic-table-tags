@@ -24,14 +24,22 @@
                 v-if="activeTag === col.name"
               >
                 <h3>
-                  <{{col.name}}>
+                  {{col.name}}
                 </h3>
                 <p>{{col.cndesc}}</p>
                 <p class="example">
                   <code>{{col.code}}</code>
                 </p>
-                <a :href="col.mdnurl" target="_blank" v-if="col.mdnurl">MDN</a>
-                <a :href="col.w3curl" target="_blank" v-if="col.w3curl">W3C</a>
+                <a
+                  :href="col.mdnurl"
+                  target="_blank"
+                  v-if="col.mdnurl"
+                >MDN</a>
+                <a
+                  :href="col.w3curl"
+                  target="_blank"
+                  v-if="col.w3curl"
+                >W3C</a>
               </div>
               <div class="element">
                 {{col.name}}
@@ -51,6 +59,7 @@
           <div
             :style="{background:val}"
             class="icon"
+            @click="classHandle(index)"
           ></div>
           <span>{{key}}</span>
         </li>
@@ -58,7 +67,10 @@
     </div>
 
     <!-- 纯颜色区域 -->
-    <div class="only-color">
+    <div
+      class="only-color"
+      v-if="false"
+    >
       <ul>
         <li
           v-for="(val, key, index) in colorInfo"
@@ -85,7 +97,17 @@ export default {
             tags,
             colorInfo,
             showInfo: false,
-            activeTag: ''
+            activeTag: '',
+            classType: ''
+        }
+    },
+    methods: {
+        classHandle(index) {
+            const T_CLASS = ['rootval', 'metascriptval', 'documentval', 'groupval', 'textval', 'embedval', 'tableval', 'formval', 'interactiveval']
+            if(T_CLASS[index]) {
+                this.classType = T_CLASS[index]
+            }
+
         }
     }
 }
@@ -160,6 +182,9 @@ td {
 .color-select {
   width: 90%;
   margin: 0 auto;
+  /* position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0); */
 }
 
 .only-color {
